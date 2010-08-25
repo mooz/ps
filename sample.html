@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <title>Ps Sample</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/psy.css" type="text/css">
+        <link rel="stylesheet" href="css/ps.css" type="text/css">
         <script type="text/javascript" src="js/lib/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery.scrollTo-min.js"></script>
         <script type="text/javascript" src="js/ps.js"></script>
         <script type="text/javascript" src="js/ps-effects.js"></script>
 
-        <!-- you -->
+        <!-- your presentation -->
+        <title>Presentation Tool Ps</title>
         <script type="text/javascript" src="sample.js"></script>
         <link rel="stylesheet" href="theme/pink.css" type="text/css">
     </head>
     <body>
         <div class="ps-page">
-            <h1>プレゼンツール Ps</h1>
+            <h1>Presentation Tool Ps</h1>
             <img data-ps-act="show" src="img/safari.png" />
         </div>
+
         <div class="ps-page">
-            <h1>背景</h1>
-            <ul data-ps-act="enlarge">
-              <li>hogehoge</li>
-              <li>hugahuga</li>
-            </ul>
-            <p data-ps-act="show">hohgohohgeo</p>
+            <h1>Effects</h1>
+            <ol>
+              <li data-ps-act="show">One</li>
+              <li data-ps-act="show">Two</li>
+              <li data-ps-act="show">Three</li>
+            </ol>
+            <p data-ps-act="show,textDelete">Multiple Actions for an element.</p>
         </div>
+
         <div class="ps-page">
-            <h1>苦労した展</h1>
+            <h1>Hooks</h1>
+            <p data-ps-act="show">You can set arbitrary functions to hook points.</p>
+            <h2 data-ps-act="show">Sample</h2>
+            <pre data-ps-act="show">
+ps.addHook("beforeTransitPage", function (page) {
+    $(page).css("opacity", 0.7);
+});
+            </pre>
         </div>
     </body>
 </html>
