@@ -49,3 +49,10 @@ pre {
 .animate-quick {
     -webkit-transition : all 0.2s ease-in-out;
 }
+
+#manipulation-guide {
+    opacity     : 0.8;
+    margin      : 10px;
+    font-family : Monaco, Consolas, "Bitstream Vera Sans Mono", monospace;
+    font-size   : 80%;
+}
