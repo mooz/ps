@@ -1,5 +1,9 @@
-function Ps(doc) {
+function Ps(doc, opts) {
+    opts = opts || {};
+
     this.doc = doc;
+    this.scrollTime = (typeof opts.scrollTime === "number") ?
+        opts.scrollTime : 300;
 }
 
 Ps.prototype = {
@@ -77,7 +81,7 @@ Ps.prototype = {
 
         self.callHook("beforeTransitPage", page);
 
-        $.scrollTo(this.pages[n], 300, {
+        $.scrollTo(this.pages[n], this.scrollTime, {
             onAfter: function () {
                 self.callHook("afterTransitPage", page);
             }
