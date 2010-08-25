@@ -39,8 +39,12 @@
             <p data-ps-act="show">You can set arbitrary functions to hook points.</p>
             <h3 data-ps-act="show">Sample</h3>
             <pre data-ps-act="show">
-ps.addHook("beforeTransitPage", function (page) {
-    $(page).css("opacity", 0.7);
+ps.addHook("beforeDisplayPage", function (page) {
+    $(page).css("opacity", 1.0);
+});
+
+ps.addHook("afterTransitPage", function (page) {
+    $(page).css("opacity", 0.3);
 });
             </pre>
         </div>
