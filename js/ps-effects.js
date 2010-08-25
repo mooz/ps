@@ -18,17 +18,35 @@
         },
         perform: function (elem) {
             $(elem).show();
+        },
+        after: function (elem) {
+            $(elem).hide();
         }
     };
 
-    effects.blink = {
+    effects.textDelete = {
+        perform: function (elem) {
+            $(elem).css("text-decoration", "line-through");
+        },
+        after: function (elem) {
+            $(elem).css("text-decoration", "");
+        }
+    };
+
+    effects.textBlink = {
+        perform: function (elem) {
+            $(elem).css("text-decoration", "blink");
+        },
+        after: function (elem) {
+            $(elem).css("text-decoration", "");
+        }
     };
 
     effects.cuteColor = function() {
         var randomColors = function() {
             var get = function() {
                 return Math.floor(Math.random() * 2) * 255;
-            }
+            };
             var r = get();
             var g = get();
             var b = get();
