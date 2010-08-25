@@ -49,10 +49,7 @@ Ps.prototype = {
             return;
 
         // after を呼ぶ
-        var self = this;
-        $(this.acts).each(function () {
-            self.doAct(this, "after");
-        });
+        this.doActs(this.acts, "after");
 
         this.nthPage(++this.pageNumber);
     },
@@ -62,10 +59,7 @@ Ps.prototype = {
             return;
 
         // after を呼ぶ
-        var self = this;
-        $(this.acts).each(function () {
-            self.doAct(this, "after");
-        });
+        this.doActs(this.acts, "after");
 
         this.nthPage(--this.pageNumber);
     },
@@ -76,8 +70,8 @@ Ps.prototype = {
         this.pageNumber = n;
         this.actNumber  = 0;
 
-        this.acts = $(this.pages[n]).find("[data-ps-act]");
-        this.arrangeActs();
+        this.acts = this.getActs(this.pages[n]);
+        this.doActs(this.acts, "before");
 
         var page = this.pages[n];
 
@@ -90,10 +84,6 @@ Ps.prototype = {
         });
     },
 
-    hidePages: function () {
-        this.pages.each(function (e) { $(this).hide(); });
-    },
-
     isValidPageIndex: function (i) {
         return (i >= 0 && i < this.pages.length);
     },
@@ -102,26 +92,37 @@ Ps.prototype = {
     // Act / Effects
     // ============================================================ //
 
-    getEffect: function (act) {
-        var effect = this.effects[$(act).attr("data-ps-act")];
-        return effect;
+    getActs: function (page) {
+        var acts = [];
+
+        $(page).find("[data-ps-act]").each(function () {
+            var target = this;
+
+            $(target).attr("data-ps-act").split(",").forEach(function (effect) {
+                acts.push({
+                    effect : effect,
+                    target : target
+                });
+            });
+        });
+
+        return acts;
     },
 
-    doAct: function (act, name) {
-        var effect = this.getEffect(act);
+    doActs: function (acts, timing) {
+        var self = this;
+        acts.forEach(function (act) {
+            self.doAct(act, timing);
+        });
+    },
 
-        if (!effect || typeof effect[name] !== "function")
+    doAct: function (act, timing) {
+        var effect = this.effects[act.effect];
+
+        if (!effect || typeof effect[timing] !== "function")
             return;
 
-        effect[name](act);
-    },
-
-    arrangeActs: function () {
-        var self = this;
-
-        $(this.acts).each(function () {
-            self.doAct(this, "before");
-        });
+        effect[timing](act.target);
     },
 
     // ============================================================ //
