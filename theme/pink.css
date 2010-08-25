@@ -2,11 +2,12 @@ body {
     background-color : #171717;
     font-family      : "Hiragino Kaku Gothic Std", Arial, Helvetica, sans-serif;
     color            : white;
+    -webkit-transition:all 0.5s ease-in-out;
 }
 
 h1 {
     font-size   : 60px;
-    color       : #ff00bd;
+    /* color       : #ff00bd; */
     font-weight : bold;
     margin      : 0;
 }
