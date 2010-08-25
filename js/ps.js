@@ -9,7 +9,7 @@ function Ps(doc, opts) {
 Ps.prototype = {
     effects: {},
     hooks: {
-        beforeTransitPage : [],
+        beforeDisplayPage : [],
         afterTransitPage  : []
     },
 
@@ -20,6 +20,7 @@ Ps.prototype = {
 
         this.pages = $(".ps-page");
         this.nthPage(0);
+        $.scrollTo(this.pages[0], 0);
     },
 
     handleKeyPress: function (ev) {
@@ -77,15 +78,21 @@ Ps.prototype = {
         this.acts = this.getActs(this.pages[n]);
         this.doActs(this.acts, "before");
 
-        var page = this.pages[n];
+        var nextPage = this.pages[n];
 
-        self.callHook("beforeTransitPage", page);
+        self.callHook("beforeDisplayPage", nextPage);
 
-        $.scrollTo(this.pages[n], this.scrollTime, {
-            onAfter: function () {
-                self.callHook("afterTransitPage", page);
-            }
-        });
+        if (this.beforeAt) {
+            var beforePage = this.beforeAt;
+            $.scrollTo(nextPage, this.scrollTime, {
+                onAfter: function () {
+                    if (beforePage !== nextPage)
+                        self.callHook("afterTransitPage", beforePage);
+                }
+            });
+        }
+
+        this.beforeAt = nextPage;
     },
 
     isValidPageIndex: function (i) {
