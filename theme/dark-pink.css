@@ -1,0 +1,28 @@
+body {
+    font-family      : "Hiragino Kaku Gothic Std", Arial, Helvetica, sans-serif;
+    background-color : #171717;
+    color            : white;
+    font-size        : 30px;
+    font-weight      : bold;
+}
+
+.ps-page {
+    padding : 20px;
+}
+
+h1 {
+    font-size   : 200%;
+    color       : #ff00bd;
+    margin      : 0;
+}
+
+h2 {
+    font-size   : 150%;
+}
+
+pre {
+    display     : inline-block;
+    font-size   : 90%;
+    font-family : Monaco, Consolas, "Bitstream Vera Sans Mono", monospace;
+    margin      : 0 auto;
+}
