@@ -27,7 +27,7 @@
     effects.cuteColor = function() {
         var randomColors = function() {
             var get = function() {
-                return Math.floor(Math.random() * 3) * 127;
+                return Math.floor(Math.random() * 2) * 255;
             }
             var r = get();
             var g = get();
