@@ -1,23 +1,41 @@
 body {
-    font-family      : "Hiragino Kaku Gothic Std", Arial, Helvetica, sans-serif;
-    background-color : #171717;
-    color            : white;
-    font-size        : 30px;
-    font-weight      : bold;
+    font-family           : "Hiragino Kaku Gothic Std", Arial, Helvetica, sans-serif;
+    background-color      : #171717;
+    color                 : white;
+    font-size             : 30px;
+    font-weight           : bold;
+
+    background-image      : url("../img/logo-transparent.png");
+    background-repeat     : no-repeat;
+    background-position   : right bottom;
+    background-attachment : fixed;
 }
 
 .ps-page {
     padding : 20px;
 }
 
+h1, h2, h3, p {
+    margin : 0;
+}
+
 h1 {
     font-size   : 200%;
     color       : #ff00bd;
-    margin      : 0;
 }
 
 h2 {
     font-size   : 150%;
+    color       : #bbff00;
+}
+
+h3 {
+    font-size   : 130%;
+    color       : #00bbff;
+}
+
+ul, ol {
+    margin : 10px 0 10px 40px;
 }
 
 pre {
@@ -25,4 +43,9 @@ pre {
     font-size   : 90%;
     font-family : Monaco, Consolas, "Bitstream Vera Sans Mono", monospace;
     margin      : 0 auto;
+    padding     : 20px;
+}
+
+.animate-quick {
+    -webkit-transition : all 0.2s ease-in-out;
 }

@@ -16,23 +16,24 @@
     <body>
         <div class="ps-page">
             <h1>Presentation Tool Ps</h1>
-            <img data-ps-act="show" src="img/safari.png" />
         </div>
 
         <div class="ps-page">
             <h1>Effects</h1>
+            <h2 data-ps-act="show">Show elements orderly</h2>
             <ol>
               <li data-ps-act="show">One</li>
               <li data-ps-act="show">Two</li>
               <li data-ps-act="show">Three</li>
             </ol>
-            <p data-ps-act="show,textDelete">Multiple Actions for an element.</p>
+            <h2 data-ps-act="show">Multiple Actions</h2>
+            <p class="animate-quick" data-ps-act="show,enlarge,textDelete">Multiple Actions for an element.</p>
         </div>
 
         <div class="ps-page">
             <h1>Hooks</h1>
             <p data-ps-act="show">You can set arbitrary functions to hook points.</p>
-            <h2 data-ps-act="show">Sample</h2>
+            <h3 data-ps-act="show">Sample</h3>
             <pre data-ps-act="show">
 ps.addHook("beforeTransitPage", function (page) {
     $(page).css("opacity", 0.7);

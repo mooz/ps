@@ -2,13 +2,15 @@
     var effects = Ps.prototype.effects;
 
     effects.enlarge = {
+        before: function (elem) {
+            $(elem).css("-webkit-transform-origin", "0 50%");
+        },
         perform: function (elem) {
-            // $(elem).css("-webkit-transform", "scale(2.0)");
-            $(elem).css("color", "red");
+            $(elem).css("-webkit-transform", "scale(1.2)");
         },
         after: function (elem) {
-            $(elem).css("color", "");
-            // $(elem).css("-webkit-transform", "");
+            $(elem).css("-webkit-transform-origin", "");
+            $(elem).css("-webkit-transform", "");
         }
     };
 
