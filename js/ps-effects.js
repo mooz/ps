@@ -41,4 +41,19 @@
         document.body.style.background = pair[0];
         document.body.style.color = pair[1];
     };
+
+    effects.monotone = (function() {
+        var count = 0;
+
+        var colorFor = function(i) {
+            var f0 = i % 2 ? '0' : 'f';
+            return '#'+ f0 + f0 + f0;
+        };
+
+        return function() {
+            document.body.style.background = colorFor(count);
+            document.body.style.color = colorFor(count+1);
+            count++;
+        };
+    })();
 })();
