@@ -36,6 +36,10 @@ Ps.prototype = {
         case 'G':
             this.nthPage(this.pages.length - 1);
             break;
+        case 'u':
+            if (this.pageToUndo)
+                this.nthPage(this.getPageNumber(this.pageToUndo));
+            break;
         }
     },
 
@@ -90,7 +94,28 @@ Ps.prototype = {
             });
         }
 
-        this.beforeAt = nextPage;
+        this.pageToUndo = this.beforeAt;
+        this.beforeAt   = nextPage;
+    },
+
+    getPageNumber: function (page) {
+        for (var i = 0; i < this.pages.length; ++i) {
+            if (page === this.pages[i])
+                return i;
+        }
+
+        return -1;
+    },
+
+    gotoPageByName: function (name) {
+        for (var i = 0; i < this.pages[i]; ++i) {
+            var page = this.pages[i];
+
+            if ($(page).attr("data-ps-page-name") === name) {
+                this.nthPage(i);
+                return false;
+            }
+        }
     },
 
     isValidPageIndex: function (i) {
