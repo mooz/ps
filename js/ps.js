@@ -18,7 +18,13 @@ Ps.prototype = {
 
         $(window).keypress(function (ev) { self.handleKeyPress(ev); });
 
-        this.pages = $(".ps-page");
+        this.pages         = $(".ps-page");
+        this.youtubeVideos = $("[data-ps-video-youtube]");
+
+        if (this.youtubeVideos) {
+            this.setupYoutubeVideos(this.youtubeVideos);
+        }
+
         this.nthPage(0);
     },
 
@@ -108,7 +114,7 @@ Ps.prototype = {
     },
 
     gotoPageByName: function (name) {
-        for (var i = 0; i < this.pages[i]; ++i) {
+        for (var i = 0; i < this.pages.length; ++i) {
             var page = this.pages[i];
 
             if ($(page).attr("data-ps-page-name") === name) {
@@ -177,6 +183,37 @@ Ps.prototype = {
         this.hooks[name].forEach(function (f) {
             if (typeof f === "function")
                 f(arg);
+        });
+    },
+
+    // ============================================================ //
+    // Videos
+    // ============================================================ //
+
+    setupYoutubeVideos: function (videos) {
+        var infos = [];
+
+        $(videos).each(function () {
+            var info = {};
+
+            $(this).attr("data-ps-video-youtube").split(",").forEach(function (param) {
+                param = param.split("=");
+                info[param[0]] = param[1];
+            });
+
+            infos.push(info);
+
+            var container   = document.createElement("div");
+            var containerID = "ps-embed-youtube-video-" + new Date();
+            container.setAttribute("id", containerID);
+            this.appendChild(container);
+
+            var params = { allowScriptAccess: "always" };
+
+            swfobject.embedSWF("http://www.youtube.com/v/" + info.id + "?enablejsapi=1&playerapiid=ytplayer",
+                               containerID,
+                               info.width || "480", info.height || "360",
+                               "8", null, null, params);
         });
     }
 };

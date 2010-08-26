@@ -9,4 +9,6 @@ $(function () {
     ps.addHook("afterTransitPage", function (page) {
         $(page).css("opacity", 0.3);
     });
+
+    window.ps = ps;
 });

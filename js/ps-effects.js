@@ -44,6 +44,19 @@
         }
     };
 
+    effects.playYouTube = {
+        before: function (elem) {
+            console.log(elem.firstChild);
+            $(elem.firstChild).stopVideo();
+        },
+        perform: function (elem) {
+            $(elem.firstChild).playVideo();
+        },
+        after: function (elem) {
+            $(elem.firstChild).stopVideo();
+        }
+    };
+
     effects.cuteColor = function() {
         var randomColors = function() {
             var get = function() {

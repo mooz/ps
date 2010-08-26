@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/ps.css" type="text/css">
         <script type="text/javascript" src="js/lib/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery.scrollTo-min.js"></script>
+        <script type="text/javascript" src="js/lib/swfobject.js"></script>
         <script type="text/javascript" src="js/ps.js"></script>
         <script type="text/javascript" src="js/ps-effects.js"></script>
 
@@ -14,11 +15,12 @@
         <link rel="stylesheet" href="theme/dark-pink.css" type="text/css">
     </head>
     <body>
-        <div class="ps-page">
+        <div class="ps-page" data-ps-page-name="title">
             <h1>Presentation Tool Ps</h1>
             <div id="manipulation-guide">
-                <p>j / k : next / previous slide</p>
-                <p>g / G : first / last slide</p>
+                <pre><p>j / k : next / prerevious slide</p></pre>
+                <pre><p>g / G : first / last slide</p></pre>
+                <pre><p>  u   : undo page</p></pre>
             </div>
         </div>
 
@@ -47,6 +49,18 @@ ps.addHook("afterTransitPage", function (page) {
     $(page).css("opacity", 0.3);
 });
             </pre>
+        </div>
+
+        <div class="ps-page">
+            <h1>Youtube Videos</h1>
+            <div class="centering"
+                 data-ps-act="playYouTube"
+                 data-ps-video-youtube="id=xdhLQCYQ-nQ,width=640,height=480"></div>
+        </div>
+
+        <div class="ps-page" data-ps-page-name="appendix">
+          <h1>Appendix</h1>
+          <p onclick="return ps.gotoPageByName('title');">Goto Title</p>
         </div>
     </body>
 </html>
