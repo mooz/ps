@@ -20,7 +20,6 @@ Ps.prototype = {
 
         this.pages = $(".ps-page");
         this.nthPage(0);
-        $.scrollTo(this.pages[0], 0);
     },
 
     handleKeyPress: function (ev) {
@@ -53,18 +52,12 @@ Ps.prototype = {
         if (!this.isValidPageIndex(this.pageNumber + 1))
             return;
 
-        // after を呼ぶ
-        this.doActs(this.acts, "after");
-
         this.nthPage(++this.pageNumber);
     },
 
     previousPage: function () {
         if (!this.isValidPageIndex(this.pageNumber - 1))
             return;
-
-        // after を呼ぶ
-        this.doActs(this.acts, "after");
 
         this.nthPage(--this.pageNumber);
     },
@@ -74,6 +67,8 @@ Ps.prototype = {
 
         this.pageNumber = n;
         this.actNumber  = 0;
+
+        var oldActs = this.acts;
 
         this.acts = this.getActs(this.pages[n]);
         this.doActs(this.acts, "before");
@@ -88,6 +83,9 @@ Ps.prototype = {
                 onAfter: function () {
                     if (beforePage !== nextPage)
                         self.callHook("afterTransitPage", beforePage);
+
+                    if (oldActs)
+                        self.doActs(oldActs, "after");
                 }
             });
         }
